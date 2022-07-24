@@ -6,12 +6,14 @@ const searchButton = document.getElementById('search-button');
 searchButton.addEventListener('click', function(){
     
     const searchBar = document.getElementById('search-bar').value;
+    const searchBarUpper = searchBar.toUpperCase();
     // console.log(searchBar);
     
     const searchUrl = "https://www.themealdb.com/api/json/v1/1/categories.php";
     fetch(searchUrl)
     .then(res => res.json())
     .then(data => {
+        // console.log(data);
         const meals = data.categories;
         
         let mealCatagory = 0;
@@ -19,7 +21,12 @@ searchButton.addEventListener('click', function(){
         for (let i = 0; i < meals.length; i++) {
         const element = meals[i];
         const catagory = element.strCategory;
-            if (catagory === searchBar){
+        // console.log(catagory);
+        const catagoryUpper = catagory.toUpperCase();
+    
+        
+        
+            if (catagoryUpper === searchBarUpper){
                 mealCatagory = catagory;
             
                 break;
